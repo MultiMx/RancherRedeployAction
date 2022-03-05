@@ -1,0 +1,32 @@
+name: Rancher Redeploy Action
+description: >
+  Redeploy a Rancher workload
+inputs:
+  backend:
+    description: 'Rancher backend'
+    required: true
+  Access_Key:
+    description: 'Rancher Access Key'
+    required: true
+  Secret_Key:
+    description: 'Rancher Secret Key'
+    required: true
+  Project:
+    description: 'Rancher Project'
+    required: true
+  NameSpace:
+    description: 'Rancher Namespace'
+    required: true
+  Workload:
+    description: 'Rancher Workload'
+    required: true
+runs:
+  using: 'docker'
+  image: 'registry.cn-shanghai.aliyuncs.com/mmx233/runner:latest'
+  env:
+    BACKEND: ${{ inputs.backend }}
+    ACCESS_KEY: ${{ inputs.Access_Key }}
+    SECRET_KEY: ${{ inputs.Secret_Key }}
+    PROJECT: ${{ inputs.Project }}
+    NAMESPACE: ${{ inputs.NameSpace }}
+    WORKLOAD: ${{ inputs.Workload }}
