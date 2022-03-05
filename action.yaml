@@ -26,10 +26,3 @@ outputs:
 runs:
   using: 'docker'
   image: 'docker://registry.cn-shanghai.aliyuncs.com/mmx233/rancher_redeploy_action:latest'
-  env:
-    BACKEND: ${{ inputs.backend }}
-    ACCESS_KEY: ${{ inputs.Access_Key }}
-    SECRET_KEY: ${{ inputs.Secret_Key }}
-    PROJECT: ${{ inputs.Project }}
-    NAMESPACE: ${{ inputs.NameSpace }}
-    WORKLOAD: ${{ inputs.Workload }}
