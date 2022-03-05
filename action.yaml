@@ -2,27 +2,24 @@ name: Rancher Redeploy Action
 description: >
   Redeploy a Rancher workload
 inputs:
-  Backend:
+  backend:
     description: 'Rancher backend'
     required: true
-  Access_Key:
+  access_key:
     description: 'Rancher Access Key'
     required: true
-  Secret_Key:
+  secret_key:
     description: 'Rancher Secret Key'
     required: true
-  Project:
+  project:
     description: 'Rancher Project'
     required: true
-  NameSpace:
+  namespace:
     description: 'Rancher Namespace'
     required: true
-  Workload:
+  workload:
     description: 'Rancher Workload'
     required: true
-outputs:
-  status:
-    description: 'result of the action'
 runs:
   using: 'docker'
   image: 'docker://registry.cn-shanghai.aliyuncs.com/mmx233/rancher_redeploy_action:latest'
