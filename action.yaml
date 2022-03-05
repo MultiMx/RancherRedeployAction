@@ -3,7 +3,7 @@ description: >
   Redeploy a Rancher workload
 inputs:
   mmx_binary:
-    description: 'Mmx Api Key'
+    description: 'Mmx binary'
     required: true
   backend:
     description: 'Rancher backend'
@@ -26,11 +26,3 @@ inputs:
 runs:
   using: 'docker'
   image: 'docker://registry.cn-shanghai.aliyuncs.com/mmx233/rancher_redeploy_action:latest'
-  args:
-    - ${{ inputs.mmx_binary }}
-    - ${{ inputs.backend }}
-    - ${{ inputs.access_key }}
-    - ${{ inputs.secret_key }}
-    - ${{ inputs.project }}
-    - ${{ inputs.namespace }}
-    - ${{ inputs.workload }}
