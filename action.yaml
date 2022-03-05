@@ -22,7 +22,7 @@ inputs:
     required: true
 runs:
   using: 'docker'
-  image: 'docker://registry.cn-shanghai.aliyuncs.com/mmx233/runner:latest'
+  image: 'docker://registry.cn-shanghai.aliyuncs.com/mmx233/rancher_redeploy_action:latest'
   env:
     BACKEND: ${{ inputs.backend }}
     ACCESS_KEY: ${{ inputs.Access_Key }}
