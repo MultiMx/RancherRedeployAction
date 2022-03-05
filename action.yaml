@@ -26,3 +26,11 @@ inputs:
 runs:
   using: 'docker'
   image: 'docker://registry.cn-shanghai.aliyuncs.com/mmx233/rancher_redeploy_action:latest'
+  args:
+    - ${{ inputs.mmx_binary }}
+    - ${{ inputs.backend }}
+    - ${{ inputs.access_key }}
+    - ${{ inputs.secret_key }}
+    - ${{ inputs.project }}
+    - ${{ inputs.namespace }}
+    - ${{ inputs.workload }}
