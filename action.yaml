@@ -2,9 +2,6 @@ name: Rancher Redeploy Action
 description: >
   Redeploy a Rancher workload
 inputs:
-  mmx_binary:
-    description: 'Mmx binary'
-    required: true
   backend:
     description: 'Rancher backend'
     required: true
@@ -25,4 +22,4 @@ inputs:
     required: true
 runs:
   using: 'docker'
-  image: 'docker://mmx233/rancher_redeploy_action:latest'
+  image: 'Dockerfile'

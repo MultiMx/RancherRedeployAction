@@ -1,0 +1,31 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  Deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Test And Build
+        env:
+          GOPRIVATE: github.com/MultiMx
+          CGO_ENABLED: 0
+        run: |
+          go test ./...
+          go build -ldflags "-s -w -extldflags '-static'" -o runner
+          upx --lzma --best runner
+          
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag registry.cn-shanghai.aliyuncs.com/mmx233/rancher_redeploy_action:latest
+
+      - name: Login
+        run: docker login --username=${{ secrets.username }} --password=${{ secrets.pwd }} registry.cn-shanghai.aliyuncs.com
+
+      - name: Push
+        run: docker push registry.cn-shanghai.aliyuncs.com/mmx233/rancher_redeploy_action:latest
