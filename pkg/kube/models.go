@@ -5,11 +5,11 @@ import (
 )
 
 type Config struct {
-	Backend     string `required:"true"`
-	Project     string `required:"true"`
-	Namespace   string `required:"true"`
-	Workload    string `required:"true"`
-	BearerToken string `required:"true" envconfig:"token"`
+	Backend     string `env:",required"`
+	Project     string `env:",required"`
+	Namespace   string `env:",required"`
+	Workload    string `env:",required"`
+	BearerToken string `env:"TOKEN,required"`
 }
 
 func (a Config) DeploymentUrl() string {
