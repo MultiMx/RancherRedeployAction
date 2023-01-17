@@ -1,6 +1,8 @@
 package kube
 
-import "encoding/json"
+import (
+	"encoding/json"
+)
 
 func (a Kube) Redeploy() error {
 	res, e := a.Request("POST", &Request{
@@ -26,9 +28,7 @@ func (a Kube) WorkloadActive() (bool, error) {
 
 	defer res.Body.Close()
 	var resp struct {
-		Selector struct {
-			State string `json:"state"`
-		} `json:"selector"`
+		State string `json:"state"`
 	}
-	return resp.Selector.State == "active", json.NewDecoder(res.Body).Decode(&resp)
+	return resp.State == "active", json.NewDecoder(res.Body).Decode(&resp)
 }

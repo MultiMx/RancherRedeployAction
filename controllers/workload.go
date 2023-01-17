@@ -34,7 +34,7 @@ func WaitWorkloadAvailable(api *kube.Kube) error {
 			time.Sleep(time.Second)
 			if ok, e = api.WorkloadActive(); e != nil {
 				counter++
-				if counter == 5 {
+				if counter >= 5 {
 					err <- e
 					return
 				}
