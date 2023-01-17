@@ -2,14 +2,23 @@ package main
 
 import (
 	"github.com/MultiMx/RancherRedeployAction/controllers"
-	"github.com/sirupsen/logrus"
-	"os"
+	"github.com/MultiMx/RancherRedeployAction/global"
+	"github.com/MultiMx/RancherRedeployAction/pkg/kube"
+	log "github.com/sirupsen/logrus"
 )
 
 func main() {
-	e := controllers.ReDeploy()
+	api := kube.New(&global.Config.Config)
+
+	e := controllers.ReDeploy(api)
 	if e != nil {
-		os.Exit(1)
+		log.Fatalln(e)
 	}
-	logrus.Infoln("Success")
+	if global.Config.WaitActive {
+		if e = controllers.WaitWorkloadAvailable(api); e != nil {
+			log.Fatalln(e)
+		}
+	}
+
+	log.Infoln("Success")
 }
