@@ -1,6 +1,6 @@
 package modles
 
-type Redeploy struct {
+type Request struct {
 	Url         string
 	BearerToken string
 }

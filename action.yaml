@@ -17,6 +17,8 @@ inputs:
   workload:
     description: 'Rancher Workload'
     required: true
+  wait:
+    description: 'Waiting workload available'
 runs:
   using: 'docker'
   image: 'Dockerfile'
