@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	e := controllers.DoReDeploy()
+	e := controllers.ReDeploy()
 	if e != nil {
 		os.Exit(1)
 	}
