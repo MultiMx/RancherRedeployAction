@@ -5,11 +5,8 @@ inputs:
   backend:
     description: 'Rancher backend'
     required: true
-  access_key:
-    description: 'Rancher Access Key'
-    required: true
-  secret_key:
-    description: 'Rancher Secret Key'
+  token:
+    description: 'Rancher Bearer Token'
     required: true
   project:
     description: 'Rancher Project'

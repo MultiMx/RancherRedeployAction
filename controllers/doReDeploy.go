@@ -18,7 +18,7 @@ func handler(c *modles.Redeploy) error {
 		Header: map[string]interface{}{
 			"User-Agent":    "curl/7.72.0",
 			"Accept":        "*/*",
-			"Authorization": fmt.Sprintf("bearer %s:%s", c.AccessKey, c.SecretKey),
+			"Authorization": "bearer " + c.BearerToken,
 		},
 		Query: map[string]interface{}{
 			"action": "redeploy",
@@ -50,8 +50,7 @@ func DoReDeploy() error {
 			os.Getenv("INPUT_NAMESPACE"),
 			os.Getenv("INPUT_WORKLOAD"),
 		),
-		AccessKey: os.Getenv("INPUT_ACCESS_KEY"),
-		SecretKey: os.Getenv("INPUT_SECRET_KEY"),
+		BearerToken: os.Getenv("INPUT_TOKEN"),
 	}
 
 	var e error

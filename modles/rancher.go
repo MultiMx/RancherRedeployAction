@@ -1,7 +1,6 @@
 package modles
 
 type Redeploy struct {
-	Url       string
-	AccessKey string
-	SecretKey string
+	Url         string
+	BearerToken string
 }
