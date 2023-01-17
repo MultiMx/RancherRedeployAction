@@ -5,10 +5,10 @@ import (
 )
 
 type Config struct {
-	Backend     string `env:",required"`
-	Project     string `env:",required"`
-	Namespace   string `env:",required"`
-	Workload    string `env:",required"`
+	Backend     string `env:"BACKEND,required"`
+	Project     string `env:"PROJECT,required"`
+	Namespace   string `env:"NAMESPACE,required"`
+	Workload    string `env:"WORKLOAD,required"`
 	BearerToken string `env:"TOKEN,required"`
 }
 
