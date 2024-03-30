@@ -4,7 +4,7 @@
 
 ```yaml
 - name: Restart
-  uses: MultiMx/RancherRedeployAction@v3.0
+  uses: MultiMx/RancherRedeployAction@v3.1
   with:
     backend: 'https://rancher.example.domain/v3/'
     token: ${{ secrets.CATTLE_BEARER_TOKEN }}
@@ -17,7 +17,7 @@
 
 ```yaml
 - name: Restart
-  uses: MultiMx/RancherRedeployAction@v3.0
+  uses: MultiMx/RancherRedeployAction@v3.1
   with:
     backend: 'https://rancher.example.domain/v3/'
     token: ${{ secrets.CATTLE_BEARER_TOKEN }}
