@@ -10,13 +10,13 @@ import (
 func main() {
 	api := kube.New(&global.Config.Config)
 
-	e := controllers.ReDeploy(api)
-	if e != nil {
-		log.Fatalln(e)
+	err := controllers.ReDeploy(api)
+	if err != nil {
+		log.Fatalln(err)
 	}
 	if global.Config.WaitActive {
-		if e = controllers.WaitWorkloadAvailable(api); e != nil {
-			log.Fatalln(e)
+		if err = controllers.WaitWorkloadAvailable(api); err != nil {
+			log.Fatalln(err)
 		}
 	}
 

@@ -8,48 +8,48 @@ import (
 )
 
 func ReDeploy(api *kube.Kube) error {
-	var e error
+	var err error
 	var counter uint8
 	for {
-		if e = api.Redeploy(); e == nil {
+		if err = api.Redeploy(); err == nil {
 			break
 		}
 		counter++
 		if counter >= 5 {
-			return e
+			return err
 		}
-		log.Errorln("Request redeploy failed: ", e)
+		log.Errorln("Request redeploy failed: ", err)
 		time.Sleep(time.Second)
 	}
 	return nil
 }
 
 func WaitWorkloadAvailable(api *kube.Kube) error {
-	var err = make(chan error)
+	var errChan = make(chan error)
 	go func() {
 		var counter uint8 = 0
 		var ok bool
-		var e error
+		var err error
 		for {
 			time.Sleep(time.Second)
-			if ok, e = api.WorkloadActive(); e != nil {
+			if ok, err = api.WorkloadActive(); err != nil {
 				counter++
 				if counter >= 5 {
-					err <- e
+					errChan <- err
 					return
 				}
-				log.Warnf("Get workload status failed: %v", e)
+				log.Warnf("Get workload status failed: %v", err)
 				continue
 			} else if ok {
-				err <- nil
+				errChan <- nil
 				return
 			}
 			counter = 0
 		}
 	}()
 	select {
-	case e := <-err:
-		return e
+	case err := <-errChan:
+		return err
 	case <-time.After(time.Minute * 5):
 		return fmt.Errorf("workload waiting timeout")
 	}

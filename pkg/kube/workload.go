@@ -5,25 +5,25 @@ import (
 )
 
 func (a Kube) Redeploy() error {
-	res, e := a.Request("POST", &Request{
+	res, err := a.Request("POST", &Request{
 		Url: a.Conf.DeploymentUrl(),
 		Query: map[string]interface{}{
 			"action": "redeploy",
 		},
 	})
-	if e != nil {
-		return e
+	if err != nil {
+		return err
 	}
 	_ = res.Body.Close()
 	return nil
 }
 
 func (a Kube) WorkloadActive() (bool, error) {
-	res, e := a.Request("GET", &Request{
+	res, err := a.Request("GET", &Request{
 		Url: a.Conf.DeploymentUrl(),
 	})
-	if e != nil {
-		return false, e
+	if err != nil {
+		return false, err
 	}
 
 	defer res.Body.Close()
